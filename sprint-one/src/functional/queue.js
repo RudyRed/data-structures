@@ -8,16 +8,16 @@ var Queue = function() {
 
   someInstance.enqueue = function(value) {
     storage[JSON.stringify(count)] = value;
-    count++
+    count++;
   };
 
   someInstance.dequeue = function() {
     var output = storage['0'];
     if (count > 0) {
       for (var i = 1; i < count; i++) {
-        storage[JSON.stringify(i - 1)] = storage[i]
+        storage[JSON.stringify(i - 1)] = storage[i];
       }
-      count--
+      count--;
     }
     delete storage[JSON.stringify(count)];
     return output;
