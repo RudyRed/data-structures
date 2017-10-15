@@ -1,25 +1,27 @@
 var Queue = function() {
   var someInstance = {};
-  var count = 0;
+
   // Use an object with numeric keys to store values
   var storage = {};
-
+  var count = 0;
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
-    storage[JSON.stringify(count)] = value;
+    
+    storage[count] = value;
     count++;
   };
 
   someInstance.dequeue = function() {
-    var output = storage['0'];
+    var output = storage[0];
+    for (var key in storage) {
+      storage[key - 1] = storage[key];
+    }
+    //delete storage[count - 1];
+
     if (count > 0) {
-      for (var i = 1; i < count; i++) {
-        storage[JSON.stringify(i - 1)] = storage[i];
-      }
       count--;
     }
-    delete storage[JSON.stringify(count)];
     return output;
   };
 
